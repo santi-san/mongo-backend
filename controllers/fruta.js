@@ -108,12 +108,34 @@ function updateFruta(req, res){
     });
 }
 
+function deleteFruta(req, res) {
+    const frutaId = req.params.id;
+
+    Fruta.findByIdAndRemove(frutaId, (err, frutaRemoved) => {
+        if(err){
+            res.status(500).send({
+                message: 'Error en el servidor'
+            });
+        } else {
+            if(frutaRemoved){
+                res.status(200).send({
+                    fruta: frutaRemoved
+                });
+            } else {
+                res.status(404).send({
+                    message: 'No existe la fruta'
+                });
+            }
+        }
+    });
+}
 
 module.exports = {
     pruebas,
     saveFruta,
     getFrutas,
     getFruta,
-    updateFruta
+    updateFruta,
+    deleteFruta
 
 };
