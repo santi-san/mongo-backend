@@ -10,4 +10,8 @@ const FrutaSchema = Schema({
 });
 
 
+
+
+
+
 module.exports = mongoose.model('Fruta', FrutaSchema);
