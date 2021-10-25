@@ -43,7 +43,28 @@ function saveFruta(req, res) {
 
 }
 
+function getFrutas(err, res) {
+    Fruta.find({}).sort({'_id': -1}).exec((err, frutas) => {
+        if(err){
+            res.status(500).send({
+                message: 'Error en el servidor'
+            });
+        } else {
+            if(frutas){
+                res.status(200).send({
+                    frutas
+                });
+            } else {
+                res.status(404).send({
+                    message: 'No hay frutas'
+                });
+            }
+        }
+    })
+}
+
 module.exports = {
     pruebas,
-    saveFruta
+    saveFruta,
+    getFrutas
 };
