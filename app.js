@@ -16,7 +16,7 @@ app.use(express.json());
 
 
 // configurar rutas
-app.get('/pruebas-api', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).send({
         message: "esta ruta es de prueba en mi api restful con mongo y node"
     });
